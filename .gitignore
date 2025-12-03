@@ -1,4 +1,20 @@
+# Encrypted seed (must NOT be committed)
+encrypted_seed.txt
+
+# Python virtual environment
 .venv/
+
+# Python cache
 __pycache__/
 *.pyc
-encrypted_seed.txt
+
+# Environment variables
+.env
+
+# IDE files
+.vscode/
+.idea/
+
+# OS system files
+.DS_Store
+Thumbs.db
