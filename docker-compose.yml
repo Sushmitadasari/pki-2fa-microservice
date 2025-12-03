@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+  app:
+    container_name: pki-2fa-service
+    build:
+      context: .
+      dockerfile: Dockerfile
+    
+    ports:
+      - "8080:8080"
+
+    # KEY: Mount volumes for persistence
+    volumes:
+      - seed-data:/data
+      - cron-output:/cron
+
+      # Mount PEM files as read-only (local development)
+      - ./student_private.pem:/app/student_private.pem:ro
+      - ./student_public.pem:/app/student_public.pem:ro
+      - ./instructor_public.pem:/app/instructor_public.pem:ro
+
+    environment:
+      TZ: "UTC"
+      SEED_FILE_PATH: "/data/seed.txt"
+
+    restart: unless-stopped
+
+volumes:
+  seed-data:
+  cron-output:
